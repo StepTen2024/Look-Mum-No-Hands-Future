@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LMNH - Refined Neon Green Test</title>
+    <style>
+        /* ===== REFINED LMNH STYLE - KEEPING THE PERSONALITY ===== */
+        
+        /* Core Colors - NEON GREEN STAYS! */
+        :root {
+            /* Primary Brand - THE NEON GREEN (unchanged!) */
+            --lmnh-green: #00ff88;
+            --lmnh-green-glow: rgba(0, 255, 136, 0.4);
+            --lmnh-green-soft: rgba(0, 255, 136, 0.1);
+            
+            /* Refined Dark Backgrounds (softer, less harsh) */
+            --bg-dark: #1e1e2e;        /* Main background - warmer than pure black */
+            --bg-card: #2a2a3e;        /* Card backgrounds - depth without harshness */
+            --bg-elevated: #34344e;    /* Hover/elevated states */
+            
+            /* Borders (subtle but present) */
+            --border-main: #3a3a4e;    /* Main borders - visible but not aggressive */
+            --border-bright: var(--lmnh-green); /* Bright borders when needed */
+            
+            /* Text (better readability) */
+            --text-primary: #e2e8f0;   /* Main text - high contrast */
+            --text-secondary: #94a3b8; /* Secondary text - readable */
+            --text-muted: #64748b;     /* Muted text - still legible */
+            
+            /* Status Colors */
+            --status-online: var(--lmnh-green);
+            --status-working: #fbbf24;
+            --status-idle: #60a5fa;
+            --status-offline: #f87171;
+        }
+        
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', 'Helvetica', 'Arial', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, var(--bg-card), var(--bg-elevated));
+            border-radius: 24px;
+            border: 1px solid var(--border-main);
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                var(--lmnh-green), 
+                transparent
+            );
+        }
+        
+        .logo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 30px;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 0 40px var(--lmnh-green-glow);
+        }
+        
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        h1 {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--lmnh-green);
+            margin-bottom: 16px;
+            text-shadow: 0 0 20px var(--lmnh-green-glow);
+        }
+        
+        .tagline {
+            font-size: 24px;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+        
+        /* Section Header */
+        .section-header {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 60px 0 30px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid var(--border-main);
+        }
+        
+        .section-header span {
+            color: var(--lmnh-green);
+        }
+        
+        /* Grid Layout */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+        
+        /* Card Styles - REFINED */
+        .card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 32px;
+            border: 1px solid var(--border-main);
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            border-color: var(--lmnh-green);
+            box-shadow: 0 8px 32px var(--lmnh-green-soft);
+            transform: translateY(-4px);
+        }
+        
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+        
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--lmnh-green-soft);
+            border: 2px solid var(--lmnh-green);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+        
+        .card-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        
+        .card-content {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+        
+        /* Status Badge */
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .status-online {
+            background: var(--lmnh-green-soft);
+            color: var(--lmnh-green);
+            border: 1px solid var(--lmnh-green);
+        }
+        
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: currentColor;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        /* Button Styles - REFINED */
+        .button-group {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 24px;
+        }
+        
+        .btn {
+            padding: 14px 32px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background: var(--lmnh-green);
+            color: var(--bg-dark);
+            box-shadow: 0 4px 16px var(--lmnh-green-soft);
+        }
+        
+        .btn-primary:hover {
+            background: #00cc6a;
+            box-shadow: 0 6px 24px var(--lmnh-green-glow);
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: var(--bg-elevated);
+            color: var(--lmnh-green);
+            border: 2px solid var(--lmnh-green);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--lmnh-green-soft);
+            box-shadow: 0 4px 16px var(--lmnh-green-soft);
+        }
+        
+        .btn-ghost {
+            background: transparent;
+            color: var(--text-secondary);
+            border: 1px solid var(--border-main);
+        }
+        
+        .btn-ghost:hover {
+            background: var(--bg-elevated);
+            color: var(--text-primary);
+            border-color: var(--lmnh-green);
+        }
+        
+        /* Chat Preview */
+        .chat-preview {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid var(--border-main);
+            max-width: 600px;
+        }
+        
+        .chat-message {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+        
+        .chat-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--bg-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+            border: 2px solid var(--lmnh-green);
+            overflow: hidden;
+        }
+        
+        .chat-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .chat-bubble {
+            background: var(--bg-elevated);
+            padding: 16px 20px;
+            border-radius: 16px;
+            border: 1px solid var(--border-main);
+            flex: 1;
+        }
+        
+        .chat-name {
+            font-weight: 700;
+            color: var(--lmnh-green);
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        
+        .chat-text {
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
+        /* Typography Demo */
+        .typography-demo {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 40px;
+            border: 1px solid var(--border-main);
+        }
+        
+        .typography-demo h2 {
+            color: var(--lmnh-green);
+            margin-bottom: 12px;
+        }
+        
+        .typography-demo h3 {
+            color: var(--text-primary);
+            margin-top: 24px;
+            margin-bottom: 8px;
+        }
+        
+        .typography-demo p {
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+        
+        /* Color Palette */
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 16px;
+        }
+        
+        .color-swatch {
+            aspect-ratio: 1;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 12px;
+            border: 1px solid var(--border-main);
+            flex-direction: column;
+            gap: 8px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .color-label {
+            font-size: 10px;
+            opacity: 0.8;
+        }
+        
+        /* Feature List */
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .feature-list li {
+            padding: 16px;
+            margin-bottom: 12px;
+            background: var(--bg-elevated);
+            border-radius: 12px;
+            border-left: 4px solid var(--lmnh-green);
+            color: var(--text-secondary);
+        }
+        
+        .feature-list li strong {
+            color: var(--text-primary);
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 60px 20px;
+            margin-top: 60px;
+            border-top: 1px solid var(--border-main);
+            color: var(--text-muted);
+        }
+        
+        .footer-brand {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+        
+        .footer-text {
+            font-size: 18px;
+            color: var(--lmnh-green);
+            font-weight: 600;
+        }
+        
+        /* Audio Controls */
+        .audio-control {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--bg-card);
+            border: 2px solid var(--lmnh-green);
+            border-radius: 16px;
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 8px 32px var(--lmnh-green-soft);
+            z-index: 1000;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .audio-control:hover {
+            box-shadow: 0 8px 40px var(--lmnh-green-glow);
+            transform: translateY(-2px);
+        }
+        
+        .audio-icon {
+            font-size: 24px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        .audio-text {
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .audio-title {
+            color: var(--lmnh-green);
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Music -->
+    <audio id="bgMusic" autoplay loop volume="0.3">
+        <source src="../music/🎹 _HANDS_ OBSOLETE._ 🎹.mp3" type="audio/mpeg">
+    </audio>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">
+                <img src="../logos/LMNH_LOGO.png" alt="LMNH Logo">
+            </div>
+            <h1>LOOK MUM NO HANDS</h1>
+            <p class="tagline">Refined. Bold. Still You. 🔥</p>
+            <div style="margin-top: 30px;">
+                <span class="status-badge status-online">
+                    <span class="status-dot"></span>
+                    ONLINE & READY
+                </span>
+            </div>
+        </div>
+
+        <!-- Section: What Changed -->
+        <h2 class="section-header"><span>What's Refined</span> (Keeping Your Personality!)</h2>
+        <div class="grid">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">🎨</div>
+                    <div class="card-title">Softer Backgrounds</div>
+                </div>
+                <div class="card-content">
+                    Dark #1e1e2e instead of pure black #1a1a1a. Warmer, easier on eyes, but still DARK and edgy.
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">💚</div>
+                    <div class="card-title">Neon Green STAYS!</div>
+                </div>
+                <div class="card-content">
+                    Your signature #00ff88 unchanged! Still glows, still pops, still YOU. Just refined around it.
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">📖</div>
+                    <div class="card-title">Better Readability</div>
+                </div>
+                <div class="card-content">
+                    Text contrast improved. Secondary text #94a3b8 instead of #gray-400. Easier to read, still looks good.
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">✨</div>
+                    <div class="card-title">Friendly Rounded</div>
+                </div>
+                <div class="card-content">
+                    16px corners (rounded-2xl) instead of 8px. Softer, more approachable, less harsh. Still modern!
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">🌟</div>
+                    <div class="card-title">Refined Glows</div>
+                </div>
+                <div class="card-content">
+                    Subtle shadows instead of aggressive glows. Professional but still has that neon personality.
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">🎯</div>
+                    <div class="card-title">Touch-Friendly</div>
+                </div>
+                <div class="card-content">
+                    Bigger buttons, more padding, mobile-ready. Your vibe, but accessible for everyone.
+                </div>
+            </div>
+        </div>
+
+        <!-- Section: Buttons -->
+        <h2 class="section-header"><span>Button Styles</span> - Still Bold!</h2>
+        <div class="card">
+            <div class="button-group">
+                <button class="btn btn-primary">Primary Action - NEON GREEN!</button>
+                <button class="btn btn-secondary">Secondary - Green Outline</button>
+                <button class="btn btn-ghost">Ghost - Subtle</button>
+            </div>
+        </div>
+
+        <!-- Section: Chat Preview -->
+        <h2 class="section-header"><span>Chat Interface</span> - Your Personality Shines!</h2>
+        <div class="chat-preview">
+            <div class="chat-message">
+                <div class="chat-avatar">
+                    <img src="../logos/LMNH_LOGO.png" alt="LMNH">
+                </div>
+                <div class="chat-bubble">
+                    <div class="chat-name">LMNH</div>
+                    <div class="chat-text">
+                        Hey! I'm LMNH! 🚴‍♂️ Welcome to the refined version. Still got that NEON GREEN energy, but now even your grandma can read it! LOOK MUM NO HANDS! 💚
+                    </div>
+                </div>
+            </div>
+            <div class="chat-message">
+                <div class="chat-avatar" style="background: #60a5fa;">👤</div>
+                <div class="chat-bubble">
+                    <div class="chat-name" style="color: #60a5fa;">You</div>
+                    <div class="chat-text">
+                        Looks great! Still bold but way more readable!
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section: Typography -->
+        <h2 class="section-header"><span>Typography</span> - Clear & Bold</h2>
+        <div class="typography-demo">
+            <h2>Heading 2 - Neon Green Pop</h2>
+            <p>This is body text at #94a3b8 - much more readable than before, but still looks sleek and modern. Your personality comes through in the BOLD choices, not harsh text.</p>
+            
+            <h3>Heading 3 - White Primary</h3>
+            <p>Secondary text still has character. The neon green hits at the RIGHT moments - headings, accents, CTAs. Not everything needs to glow to be YOU.</p>
+
+            <ul class="feature-list">
+                <li><strong>Refined but Bold:</strong> Your neon green signature stays, everything else refined</li>
+                <li><strong>User-Friendly:</strong> Readable, accessible, mobile-ready</li>
+                <li><strong>Still YOU:</strong> Personality shines through smart use of color & bold choices</li>
+            </ul>
+        </div>
+
+        <!-- Section: Color Palette -->
+        <h2 class="section-header"><span>Color Palette</span> - The Refined System</h2>
+        <div class="color-grid">
+            <div class="color-swatch" style="background: #00ff88; color: #1e1e2e;">
+                <div style="font-weight: 800;">NEON GREEN</div>
+                <div class="color-label">#00ff88<br>YOUR SIGNATURE!</div>
+            </div>
+            <div class="color-swatch" style="background: #1e1e2e; border: 2px solid #00ff88;">
+                <div>BG Dark</div>
+                <div class="color-label">#1e1e2e<br>Softer Black</div>
+            </div>
+            <div class="color-swatch" style="background: #2a2a3e; border: 2px solid #3a3a4e;">
+                <div>BG Card</div>
+                <div class="color-label">#2a2a3e<br>Warm Gray</div>
+            </div>
+            <div class="color-swatch" style="background: #34344e; border: 2px solid #3a3a4e;">
+                <div>BG Elevated</div>
+                <div class="color-label">#34344e<br>Hover State</div>
+            </div>
+            <div class="color-swatch" style="background: #e2e8f0; color: #1e1e2e; border: 2px solid #3a3a4e;">
+                <div style="font-weight: 700;">Text Primary</div>
+                <div class="color-label">#e2e8f0<br>High Contrast</div>
+            </div>
+            <div class="color-swatch" style="background: #94a3b8; color: #1e1e2e; border: 2px solid #3a3a4e;">
+                <div>Text Secondary</div>
+                <div class="color-label">#94a3b8<br>Readable</div>
+            </div>
+        </div>
+
+        <!-- Section: The Bottom Line -->
+        <h2 class="section-header"><span>The Bottom Line</span> 🎯</h2>
+        <div class="card">
+            <div class="card-content" style="font-size: 18px; line-height: 1.8;">
+                <p style="color: var(--text-primary); margin-bottom: 24px;">
+                    <strong>Your NEON GREEN stays untouched.</strong> That's your signature. That's YOU. 💚
+                </p>
+                <p style="color: var(--text-primary); margin-bottom: 24px;">
+                    <strong>Everything else?</strong> Refined to be more readable, more accessible, more user-friendly.
+                </p>
+                <p style="color: var(--lmnh-green); font-weight: 700; font-size: 20px;">
+                    Still bold. Still confident. Still "Look Mum No Hands."<br>
+                    Just refined enough that EVERYONE can use it. 🚴‍♂️🔥
+                </p>
+            </div>
+            <div class="button-group">
+                <button class="btn btn-primary">This is the Way 💪</button>
+                <button class="btn btn-secondary">Love It! 🚀</button>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="footer-brand">
+                <img src="../logos/LMNH_LOGO.png" alt="LMNH" style="width: 80px; height: 80px; border-radius: 50%;">
+            </div>
+            <div class="footer-text">LOOK MUM NO HANDS</div>
+            <p style="margin-top: 16px;">Refined. Accessible. Still You.</p>
+        </div>
+        
+        <!-- Audio Control -->
+        <div class="audio-control" id="audioControl" onclick="toggleMusic()">
+            <div class="audio-icon" id="audioIcon">🎵</div>
+            <div>
+                <div class="audio-text" id="audioStatus">Playing</div>
+                <div class="audio-title">"HANDS OBSOLETE"</div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const audio = document.getElementById('bgMusic');
+        const audioControl = document.getElementById('audioControl');
+        const audioIcon = document.getElementById('audioIcon');
+        const audioStatus = document.getElementById('audioStatus');
+        let isPlaying = true;
+        
+        // Auto-play with fallback
+        audio.play().catch(err => {
+            console.log('Autoplay blocked, click to play');
+            isPlaying = false;
+            audioIcon.textContent = '🔇';
+            audioStatus.textContent = 'Click to Play';
+        });
+        
+        function toggleMusic() {
+            if (isPlaying) {
+                audio.pause();
+                audioIcon.textContent = '🔇';
+                audioStatus.textContent = 'Paused';
+                isPlaying = false;
+            } else {
+                audio.play();
+                audioIcon.textContent = '🎵';
+                audioStatus.textContent = 'Playing';
+                isPlaying = true;
+            }
+        }
+    </script>
+</body>
+</html>
+
