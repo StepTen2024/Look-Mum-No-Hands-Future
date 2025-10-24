@@ -30,6 +30,11 @@ logs/
 
 # OS
 .DS_Store
+
+# Agent config (contains API keys)
+agent/lmnh_config.json
+agent/logs/
+agent/venv/
 Thumbs.db
 
 # Testing
